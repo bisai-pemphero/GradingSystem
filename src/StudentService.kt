@@ -26,6 +26,8 @@ fun registerStudent() {
     val student = Student(studentId, studentName, studentCourse)
 
     students.add(student)
+    saveStudents(students)
+
     println("\nStudent registered successfully!")
 
     pause()
@@ -58,6 +60,8 @@ fun enterMarks() {
     student.programming = getValidMark("Programming")
 
     student.database = getValidMark("Database")
+
+    saveStudents(students)
 
     println("Marks saved Successfully")
 
@@ -243,6 +247,8 @@ fun deleteStudent() {
     if(answer.equals("Y", ignoreCase = true)){
 
         students.remove(student)
+
+        saveStudents(students)
 
         println("Student deleted successfully!")
 

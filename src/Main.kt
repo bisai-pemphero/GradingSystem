@@ -1,6 +1,6 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-val students = mutableListOf<Student>()
+val students = loadStudents()
 
 fun main() {
     menu()
@@ -31,7 +31,7 @@ fun menu(){
             5 -> searchStudent()
             6 -> deleteStudent()
             7 -> {
-                println("Calculator Closed Successfully")
+                println("Grading System Closed Successfully")
                 break
             }
 
