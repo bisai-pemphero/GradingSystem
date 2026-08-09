@@ -1,12 +1,3 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-val students = mutableListOf<Student>()
-
-fun main() {
-    menu()
-}
-
-<<<<<<< HEAD
 fun menu(){
     while (true) {
         println()
@@ -31,7 +22,7 @@ fun menu(){
             5 -> searchStudent()
             6 -> deleteStudent()
             7 -> {
-                println("Calculator Closed Successfully")
+                println("Goodbye")
                 break
             }
 
@@ -39,6 +30,3 @@ fun menu(){
         }
     }
 }
-
-=======
->>>>>>> bfea2649bd32a2def14df3986bd23f988e0477f3
