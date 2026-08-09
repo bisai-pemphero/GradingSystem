@@ -326,3 +326,55 @@ fun searchStudent(){
 
 }
 
+//show statics
+fun showStatistics() {
+
+    println("\n----- CLASS STATISTICS -----")
+
+    if (students.isEmpty()) {
+
+        println("No students registered.")
+        pause()
+        return
+    }
+
+    val totalStudents = students.size
+
+    val classAverage = students
+        .map { calculateAverage(it) }
+        .average()
+
+    val highestStudent = students
+        .maxByOrNull { calculateAverage(it) }
+
+    val lowestStudent = students
+        .minByOrNull { calculateAverage(it) }
+
+    val passedStudents = students
+        .count { calculateAverage(it) >= 50 }
+
+    val failedStudents = students
+        .count { calculateAverage(it) < 50 }
+
+    val passRate = (passedStudents.toDouble() / totalStudents) * 100
+
+    println()
+    println("Total Students  : $totalStudents")
+    println("Class Average   : %.2f".format(classAverage))
+
+    println(
+        "Highest Average : %.2f - ${highestStudent?.name}"
+            .format(calculateAverage(highestStudent!!))
+    )
+
+    println(
+        "Lowest Average  : %.2f - ${lowestStudent?.name}"
+            .format(calculateAverage(lowestStudent!!))
+    )
+
+    println("Passed Students : $passedStudents")
+    println("Failed Students : $failedStudents")
+    println("Pass Rate       : %.2f%%".format(passRate))
+
+    pause()
+}
