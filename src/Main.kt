@@ -6,7 +6,7 @@ fun main() {
     menu()
 }
 
-<<<<<<< HEAD
+
 fun menu(){
     while (true) {
         println()
@@ -39,6 +39,3 @@ fun menu(){
         }
     }
 }
-
-=======
->>>>>>> bfea2649bd32a2def14df3986bd23f988e0477f3
