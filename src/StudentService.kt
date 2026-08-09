@@ -22,16 +22,15 @@ fun registerStudent() {
     print("Enter Student Course ")
     val studentCourse = readln().toString()
 
-
     val student = Student(studentId, studentName, studentCourse)
 
     students.add(student)
+
     saveStudents(students)
 
     println("\nStudent registered successfully!")
 
     pause()
-
 }
 
 
@@ -70,14 +69,12 @@ fun enterMarks() {
 }
 
 
-
 fun findStudentById(): Student? {
 
     print("Enter Student ID: ")
     val id = readln().toInt()
 
     return students.find { it.id == id }
-
 }
 
 //View Student
@@ -138,7 +135,6 @@ fun viewStudent() {
     println("---------------------------------")
 
     pause()
-
 }
 
 fun calculateTotal(student: Student): Double {
@@ -378,3 +374,168 @@ fun showStatistics() {
 
     pause()
 }
+
+//show ranking
+fun showRanking() {
+
+    println("\n============================================================")
+    println("                    STUDENT RANKING")
+    println("============================================================")
+
+    if (students.isEmpty()) {
+
+        println("No students registered.")
+        pause()
+        return
+
+    }
+
+    val rankedStudents = students
+        .sortedByDescending { calculateAverage(it) }
+
+    println(
+        "%-10s %-20s %-12s %-10s".format(
+            "Position",
+            "Name",
+            "Average",
+            "Grade"
+        )
+    )
+
+    println("------------------------------------------------------------")
+
+    for ((index, student) in rankedStudents.withIndex()) {
+
+        val position = index + 1
+
+        val average = calculateAverage(student)
+
+        val grade = calculateGrade(average)
+
+        println(
+            "%-10d %-20s %-12.2f %-10s".format(
+                position,
+                student.name,
+                average,
+                grade
+            )
+        )
+    }
+
+    println("============================================================")
+
+    pause()
+}
+
+//edit student
+fun editStudent() {
+
+    println("\n----- Edit Student -----")
+
+    val student = findStudentById()
+
+    if (student == null) {
+
+        println("Student not found!")
+        pause()
+        return
+    }
+
+    println()
+    println("Current Student Information")
+    println("----------------------------")
+    println("ID     : ${student.id}")
+    println("Name   : ${student.name}")
+    println("Course : ${student.course}")
+
+    println()
+    println("1. Edit Name")
+    println("2. Edit Course")
+    println("3. Edit Marks")
+    println("4. Edit Everything")
+    println("5. Cancel")
+
+    print("Choose option: ")
+
+    when (readln().toInt()) {
+
+        1 -> editStudentName(student)
+
+        2 -> editStudentCourse(student)
+
+        3 -> editStudentMarks(student)
+
+        4 -> {
+
+            editStudentName(student)
+            editStudentCourse(student)
+            editStudentMarks(student)
+
+        }
+
+        5 -> {
+            println("Edit cancelled.")
+            pause()
+            return
+        }
+
+        else -> {
+            println("Invalid option.")
+            pause()
+            return
+        }
+    }
+
+    saveStudents(students)
+
+    println("\nStudent updated successfully!")
+
+    pause()
+}
+
+//edit student name
+fun editStudentName(student: Student) {
+
+    print("Enter new name: ")
+
+    val newName = readln()
+
+    if (newName.isBlank()) {
+
+        println("Name cannot be empty.")
+        return
+    }
+
+    student.name = newName
+}
+
+//edit course name
+fun editStudentCourse(student: Student) {
+
+    print("Enter new course: ")
+
+    val newCourse = readln()
+
+    if (newCourse.isBlank()) {
+
+        println("Course cannot be empty.")
+        return
+    }
+
+    student.course = newCourse
+}
+
+//edit marks
+fun editStudentMarks(student: Student) {
+
+    println("\n----- Edit Marks -----")
+
+    student.maths = getValidMark("Maths")
+
+    student.english = getValidMark("English")
+
+    student.programming = getValidMark("Programming")
+
+    student.database = getValidMark("Database")
+}
+

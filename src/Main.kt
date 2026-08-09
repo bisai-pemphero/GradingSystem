@@ -18,9 +18,11 @@ fun menu(){
         println("3. View Student")
         println("4. View All Students")
         println("5. Search Student")
-        println("6. Delete Students")
-        println("7. Class Statistics")
-        println("8. Exit")
+        println("6. Edit")
+        println("7. Delete Students")
+        println("8. Class Statistics")
+        println("9. Student Ranking")
+        println("10. Exit")
 
         val choice = readln().toIntOrNull() ?: 0
 
@@ -30,10 +32,12 @@ fun menu(){
             3 -> viewStudent()
             4 -> viewAllStudents()
             5 -> searchStudent()
-            6 -> deleteStudent()
-            7 -> showStatistics()
+            6 -> editStudent()
+            7 -> deleteStudent()
+            8 -> showStatistics()
+            9 -> showRanking()
 
-            8 -> {
+            10 -> {
                 println("Grading System Closed Successfully")
                 break
             }
